@@ -1,0 +1,24 @@
+Package: annotate4
+Title: S4 Classes and Methods for Annotated Vectors
+Version: 0.1
+Description: annotate4 is experimental code that was aimed at providing S4 classes
+  for basic R data types that additionally had meta-data (like variable labels).
+  However, base R has a lot of non-generic functions that get confused by these
+  new objects.
+Authors@R: c(
+    person("Marius", "Barth", email = "marius.barth@uni-koeln.de", role = c("aut", "cre"))
+  )
+URL: https://github.com/mariusbarth/annotate4
+BugReports: https://github.com/mariusbarth/annotate4/issues
+Depends:
+  R (>= 2.11.1)
+Imports:
+  methods,
+  knitr
+License: MIT + file LICENSE
+LazyData: yes
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+Collate: 
+    'annotated_data.R'
+    'variable_label.R'
