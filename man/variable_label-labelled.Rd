@@ -3,9 +3,12 @@
 \docType{methods}
 \name{variable_label,labelled-method}
 \alias{variable_label,labelled-method}
+\alias{variable_label,papaja_labelled-method}
 \title{Extract label from a 'labelled' vector}
 \usage{
 \S4method{variable_label}{labelled}(object)
+
+\S4method{variable_label}{papaja_labelled}(object)
 }
 \arguments{
 \item{object}{A vector of (S3-) class \code{labelled} (e.g., from \pkg{Hmisc} package) and attribute \code{label} set.}

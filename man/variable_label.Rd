@@ -8,6 +8,7 @@
 \alias{variable_label,data.frame-method}
 \alias{variable_label<-,annotated_vector,character-method}
 \alias{variable_label<-,vector,character-method}
+\alias{variable_label<-,factor,character-method}
 \alias{variable_label<-,annotated_factor,character-method}
 \alias{variable_label<-,data.frame,character-method}
 \title{Assign or Extract Variable Labels}
@@ -24,6 +25,8 @@ variable_label(object) <- value
 
 \S4method{variable_label}{vector,character}(object) <- value
 
+\S4method{variable_label}{factor,character}(object) <- value
+
 \S4method{variable_label}{annotated_factor,character}(object) <- value
 
 \S4method{variable_label}{data.frame,character}(object) <- value
@@ -39,4 +42,3 @@ Check the examples for details.}
 Assign or extract variable labels of a \code{vector} \emph{or}
 the columns (i.e., vectors) of a \code{data.frame}.
 }
-\keyword{internal}

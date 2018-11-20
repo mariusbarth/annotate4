@@ -13,7 +13,7 @@ NULL
 #' this should be a length-one argument. If applied to a \code{data.frame}, \code{value} is required to be a \emph{named} vector.
 #' Check the examples for details.
 #' @rdname variable_label
-#' @keywords internal
+#' @export
 
 setGeneric(
   name = "variable_label"
@@ -25,7 +25,7 @@ setGeneric(
 
 
 #' @rdname variable_label
-#' @keywords internal
+#' @export
 
 setGeneric(
   name = "variable_label<-"
@@ -66,17 +66,30 @@ setMethod(
 
 
 setOldClass("labelled")
+setOldClass("papaja_labelled")
 
 #' Extract label from a 'labelled' vector
 #'
 #' This method is for minimum compatibility with the \pkg{Hmisc} package. Allows to extract a variable label that was set by \code{Hmisc::label}.
 #' @param object A vector of (S3-) class \code{labelled} (e.g., from \pkg{Hmisc} package) and attribute \code{label} set.
-#'
+
+#' @rdname variable_label-labelled
 #' @export
 
 setMethod(
   "variable_label"
   , signature = "labelled"
+  , definition = function(object){
+    return(attr(object, "label"))
+  }
+)
+
+#' @rdname variable_label-labelled
+#' @export
+
+setMethod(
+  "variable_label"
+  , signature = "papaja_labelled"
   , definition = function(object){
     return(attr(object, "label"))
   }
@@ -94,8 +107,6 @@ setMethod(
     mapply(FUN = variable_label, object, SIMPLIFY = FALSE, USE.NAMES = TRUE)
   }
 )
-
-
 
 #' @rdname variable_label
 #' @export
@@ -122,12 +133,12 @@ setMethod(
   , signature = c(object = "vector", value = "character")
   , definition = function(object, value){
 
-    # new(
-    #   paste0("annotated_", class(object))
-    #   , .Data = object
-    #   , annotation = new("vector_annotation", label = value)
-    # )
-    structure(object, label = value, class = c("labelled", setdiff(class(object), "labelled")))
+    new(
+      paste0("annotated_", class(object))
+      , .Data = object
+      , annotation = new("vector_annotation", label = value)
+    )
+    # structure(object, label = value, class = c("labelled", setdiff(class(object), "labelled")))
   }
 )
 
@@ -136,21 +147,21 @@ setMethod(
 #' @rdname variable_label
 #' @export
 
-# setMethod(
-#   "variable_label<-"
-#   , signature = c(object = "factor", value = "character")
-#   , definition = function(object, value){
-#
-#     new(
-#       "annotated_factor"
-#       , .Data = object
-#       , label = value
-#       , annotation = new("vector_annotation", label = value)
-#       , levels = levels(object)
-#       , .S3Class = "factor"
-#     )
-#   }
-# )
+setMethod(
+  "variable_label<-"
+  , signature = c(object = "factor", value = "character")
+  , definition = function(object, value){
+
+    new(
+      "annotated_factor"
+      , .Data = object
+      , label = value
+      , annotation = new("vector_annotation", label = value)
+      , levels = levels(object)
+      , .S3Class = "factor"
+    )
+  }
+)
 
 
 
